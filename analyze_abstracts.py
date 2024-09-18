@@ -36,8 +36,8 @@ if OPEN_AI_API_KEY is None:
             Mac/Linux: export OPENAI_API_KEY=yourkey
         """)
 
-TOKEN_LIMIT = 28000
-MAX_WORKERS = 5
+TOKEN_LIMIT = 200000
+MAX_WORKERS = 10
 REQUESTS_PER_MINUTE = 20
 
 # Set the API key from the environment variable
@@ -82,7 +82,7 @@ def analyze_title_abstract(title, abstract, topic):
     ]
 
     response = openai.chat.completions.create(
-        model="gpt-4o",
+        model="gpt-4o-mini",
         messages=messages,
         response_format={
             "type": "json_object",
