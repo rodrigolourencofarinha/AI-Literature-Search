@@ -53,9 +53,9 @@ def main():
     
     # Example questions
     questions = [
-        "What are the different definitions of radical innovation?",
-        "How does radical innovation differ from incremental innovation?",
-        "Can you provide examples of radical innovation in technology?"
+        "What are the characteristics of non-dominant companies?",
+        "In which type of innovation they mostly invest in?",
+        "what are the differences between dominant vs non-dominant investments?"
     ]
     
     # Ask each question and log the interaction
