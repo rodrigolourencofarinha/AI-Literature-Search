@@ -165,3 +165,7 @@ cython_debug/
 *.csv
 *.xlsx
 *.log
+
+# Folders
+
+src/backup
