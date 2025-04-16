@@ -205,8 +205,8 @@ def main(input_path, output_path, num_rows=None):
     logging.info(f"Total Tokens Used: {total_tokens_used}")
 
 if __name__ == "__main__":
-    input_path = "C:/Users/rodri/Dropbox/Resources/Python/AI-Literature-Search/data/interim/LS-20250414-Competitive_Intensity-2014_2025-JM_JMR_MS_JAMS_doi_metadata_with_citations.xlsx"
-    output_path = "C:/Users/rodri/Dropbox/Resources/Python/AI-Literature-Search/data/output/LS-20250414-Competitive_Intensity-2014_2025-JM_JMR_MS_JAMS_results.csv"
+    input_path = "C:/Users/rodri/Dropbox/Resources/Python/AI-Literature-Search/data/interim/LS-20250416_Abstracts.xlsx"
+    output_path = "C:/Users/rodri/Dropbox/Resources/Python/AI-Literature-Search/data/output/LS-20250416-Results.csv"
 
     # Check if the input file exists
     if not os.path.exists(input_path):
