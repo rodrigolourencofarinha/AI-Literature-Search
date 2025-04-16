@@ -28,7 +28,7 @@ logger.addHandler(fh)
 logger.addHandler(ch)
 
 
-OPEN_AI_API_KEY = os.environ.get("OPENAI_API_KEY", None)
+OPEN_AI_API_KEY = os.environ.get("OPENAI_API_KEY_AI-LITERATURE-SEARCH", None)
 if OPEN_AI_API_KEY is None:
     raise ValueError(f"""Please set the OPENAI_API_KEY environment variable:
             Copy the API key from the OpenAI dashboard and set it as an environment variable using the following command before running the script:
@@ -36,9 +36,9 @@ if OPEN_AI_API_KEY is None:
             Mac/Linux: export OPENAI_API_KEY=yourkey
         """)
 
-TOKEN_LIMIT = 200000
-MAX_WORKERS = 10
-REQUESTS_PER_MINUTE = 20
+TOKEN_LIMIT = 4000000
+MAX_WORKERS = 40
+REQUESTS_PER_MINUTE = 5000
 
 # Set the API key from the environment variable
 openai.api_key = OPEN_AI_API_KEY
@@ -47,7 +47,7 @@ def analyze_title_abstract(title, abstract, topic):
     """Analyzes the title and abstract and classifies the study according to predefined criteria."""
 
     prompt_template = """
-    Analyze the title and abstract of the following research paper for its relevance to the topic '{topic}'. Return the study's title. Assign a relevance score from 0 (completely unrelated) to 10 (highly relevant). Explicit inform the name of the article and provide a brief explanation for your score, referencing specific parts of the title and abstract that justify your rating.  If the topic is not mentioned or only indirectly related, explain why.
+    Analyze the title and abstract of the following research paper and see if it includes '{topic}' is a key direct topic in the research. Return the study's title. Assign a relevance score from 0 (completely unrelated) to 10 (highly relevant). Explicit inform the name of the article and provide a brief explanation for your score, referencing specific parts of the title and abstract that justify your rating.  If the topic is not mentioned or only indirectly related, explain why.
     Title: {title}
     Abstract: {abstract}
     The output should be formatted as a JSON object that conforms to the schema below.
@@ -205,15 +205,9 @@ def main(input_path, output_path, num_rows=None):
     logging.info(f"Total Tokens Used: {total_tokens_used}")
 
 if __name__ == "__main__":
-    print("Welcome to the Literature Relevance Analysis Tool!")
-    print("This tool uses OpenAI's GPT-4 model to analyze the relevance of academic papers to a specific topic.")
-    print("Please ensure that your input file is in Excel format with 'Title' and 'Abstract' columns.")
-    print("The output will be written to a CSV file with relevance scores and explanations.")
-    print("Let's get started!\n")
+    input_path = "C:/Users/rodri/Dropbox/Resources/Python/AI-Literature-Search/data/interim/LS-20250414-Competitive_Intensity-2014_2025-JM_JMR_MS_JAMS_doi_metadata_with_citations.xlsx"
+    output_path = "C:/Users/rodri/Dropbox/Resources/Python/AI-Literature-Search/data/output/LS-20250414-Competitive_Intensity-2014_2025-JM_JMR_MS_JAMS_results.csv"
 
-    # Ask user for input and output file paths
-    input_path = input("Enter the path to the input file - don't include quotation marks (e.g., input.xlsx): ")
-    output_path = input("Enter the path to the output file - don't include quotation marks (e.g., output.csv): ")
     # Check if the input file exists
     if not os.path.exists(input_path):
         raise FileNotFoundError(f"Input file not found at {input_path}")
